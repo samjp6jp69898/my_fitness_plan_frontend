@@ -1,3 +1,25 @@
+@import "../../../node_modules/bootstrap/scss/_functions.scss";
+@import "./_variables.scss";
+@import "../../../node_modules/bootstrap/scss/mixins";
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
+
+.nav {
+	background-color: #0066EE;
+}
+
+.nav-link {
+	background-color: inherit;
+}
+
+.nav-item.active {
+	background-color: #00548B;
+}
+
+.nav-link:hover {
+	background-color: #00548B;
+	cursor: pointer;
+}
+
 .row_center_center {
 	display: flex;
 	align-items: center;

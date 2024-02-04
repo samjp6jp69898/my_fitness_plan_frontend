@@ -15,7 +15,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "./static/css/publicStyle.css";
+@import "./static/css/publicStyle.scss";
 
 html,
 body {
