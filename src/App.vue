@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <RouterView class="routerview"></RouterView>
   </div>
 </template>
@@ -24,5 +24,16 @@ body {
   margin: 0;
   padding: 0;
   background-color: #eeeeee;
+  font-family: 'PingFang SC',Arial,Helvetica,'Microsoft YaHei';
+}
+
+.app {
+  padding: 0;
+  margin: 0;
+  background-color: #eeeeee;
+  height: 100%;
+  width: 100%;
+  font-family: 'PingFang SC',Arial,Helvetica,'Microsoft YaHei';
+  color: #000000;
 }
 </style>
