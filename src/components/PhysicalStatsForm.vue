@@ -24,8 +24,8 @@
             <el-form-item label="每日攝取熱量">
                 <el-input v-model="form.intake" />
             </el-form-item>
-            <el-form-item label="運動類型">
-                <el-select v-model="form.exerciseType" class="m-2" placeholder="Select" size="large" style="width: 240px">
+            <el-form-item label="運動類型" style="width: 240px; height: 40px;"> 
+                <el-select v-model="form.exerciseType" placeholder="Select" size="large" style="width: 100%; height: 100%; position: unset;">
                     <el-option v-for="(item, index) in exerciseType" :key="index" :label="item.label" :value="item.id" />
                 </el-select>
             </el-form-item>
