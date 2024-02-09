@@ -10,15 +10,19 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for development
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### Compiles and minifies for production
 ```
-npm run lint
+npm run build:prod
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## [部署到 firebase](https://my-fitness-pal-plus.web.app)
+
+```bash
+npm run build:dev
+firebase deploy
+```
