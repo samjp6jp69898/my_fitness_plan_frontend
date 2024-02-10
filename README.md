@@ -26,3 +26,7 @@ npm run build:prod
 npm run build:dev
 firebase deploy
 ```
+
+### backend endpoint
+
+* 測試: https://my-fitness-plan.onrender.com
