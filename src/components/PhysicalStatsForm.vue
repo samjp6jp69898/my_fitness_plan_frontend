@@ -1,99 +1,85 @@
 <template>
-    <div class="column_center_start physical_state_form">
-        <div class="row_center_start form_title">
-            <text>您的每日摘要</text>
+    <div class="column_center_start login_register_form">
+        <div class="flip-card" style="width: 100%;" :class="{ flipped: loginPage }">
+            <div class="flip-card-inner" style="width: 100%;">
+                <div class="flip-card-front" style="width: 100%;">
+                    <createUser @changeFormType="loginPage = true" />
+                </div>
+                <div class="flip-card-back" style="width: 100%;">
+                    <loginForm @toRegister="loginPage = false" />
+                </div>
+            </div>
         </div>
-
-        <el-form class="column_start_start" :model="form" label-width="120px" style="margin: 15px 0; text-align: left;">
-            <el-form-item label="身高">
-                <el-input v-model="form.height" />
-            </el-form-item>
-            <el-form-item label="體重">
-                <el-input v-model="form.weight" />
-            </el-form-item>
-            <el-form-item label="年齡">
-                <el-input v-model="form.age" />
-            </el-form-item>
-            <el-form-item label="性別">
-                <el-radio-group v-model="form.gender" label="label position">
-                    <el-radio-button label="left">男</el-radio-button>
-                    <el-radio-button label="right">女</el-radio-button>
-                    <el-radio-button label="top">其他</el-radio-button>
-                </el-radio-group>
-            </el-form-item>
-            <el-form-item label="每日攝取熱量">
-                <el-input v-model="form.intake" />
-            </el-form-item>
-            <el-form-item label="運動類型" style="width: 240px; height: 40px;"> 
-                <el-select v-model="form.exerciseType" placeholder="Select" size="large" style="width: 100%; height: 100%; position: unset;">
-                    <el-option v-for="(item, index) in exerciseType" :key="index" :label="item.label" :value="item.id" />
-                </el-select>
-            </el-form-item>
-            <el-form-item>
-                <el-button type="primary" @click="onSubmit">設定</el-button>
-                <!-- <el-button>Cancel</el-button> -->
-            </el-form-item>
-        </el-form>
+        <!-- <createUser v-if="!loginPage" @changeFormType="loginPage = true"/>
+        <loginForm v-else @toRegister="loginPage = false" /> -->
     </div>
 </template>
 <script>
+// import commonUtils from '@/utils/common.utils'
+import createUser from '@/components/createUser.vue'
+import loginForm from '@/components/loginForm.vue'
+import { mapGetters } from 'vuex'
 export default {
+    components: {
+        createUser,
+        loginForm
+    },
     data() {
         return {
-            dropdownItems: [
-                { name: '有氧運動' },
-                { name: '重量訓練' },
-                { name: '球類運動' }
-            ],
-            form: {
-                height: null,
-                weight: null,
-                age: null,
-                gender: null,
-                intake: null,
-                exerciseType: ''
-            },
-            exerciseType: [
-                { id: 1, label: '有氧運動' },
-                { id: 2, label: '重量訓練' },
-                { id: 3, label: '球類運動' }
-            ],
-            selectedItemIndex: null
+            loginPage: false
         }
     },
+    computed: {
+        ...mapGetters('user',[
+            'name'
+        ]),
+    },
     methods: {
-        selectItem(index) {
-            this.selectedItemIndex = index;
-        }
     }
 }
 </script>
 <style lang="scss">
-.physical_state_form {
-    margin-top: 20px;
-    width: 80%;
+.login_register_form {
+    width: 30%;
     padding: 0px;
     background-color: #fff;
+    border-radius: 0 0 4px 4px;
 }
 
 .form_title {
     width: 100%;
-    padding: 5px 4% 5px 4%;
+    padding: 5px 5%;
     background-color: #0A5282;
     color: #fff;
+    border-radius: 4px 4px 0 0;
 }
 
-.state_form {
-    margin: 10px 0;
-    width: 90%;
-    padding: 5px 4% 5px 4%;
-
-    input {
-        margin: 10px 0;
-    }
+.flip-card {
+    perspective: 1000px;
 }
 
-.dropdown {
-    margin: 10px 0;
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.flip-card-back {
+    transform: rotateY(180deg);
 }
 </style>

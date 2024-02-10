@@ -10,23 +10,23 @@
                 <a class="nav-link">{{ item.name }}</a>
             </li>
         </ul>
-        <PhysicalStatsForm v-if="currentTabIndex === 0" />
-        <div class="column_center_center">
-            <div class="row_center_center">
-                <button @click="click">test</button>
-                <button @click="reset">reset</button>
-            </div>
-            <text>test api: {{ testData }}</text>
+        <div :class="isLogin ? 'row_start_between' : 'row_start_center'" style="width: 90%; margin-top: 20px;">
+            <userInfo v-if="currentTabIndex === 0" />
+            <PhysicalStatsForm v-if="currentTabIndex === 0 && !isLogin" />
+            <reLogin v-if="currentTabIndex === 0 && isLogin" />
         </div>
-
     </div>
 </template>
 <script>
 import PhysicalStatsForm from '@/components/PhysicalStatsForm.vue';
-import { test } from '@/services/test.service'
+import userInfo from '@/components/userInfo.vue';
+import reLogin from '@/components/reLogin.vue';
+import { mapGetters } from 'vuex';
 export default {
     components: {
-        PhysicalStatsForm
+        PhysicalStatsForm,
+        userInfo,
+        reLogin
     },
     data() {
         return {
@@ -40,18 +40,16 @@ export default {
             testData: ''
         }
     },
+    computed: {
+        ...mapGetters('user', [
+            'isLogin',
+        ]),
+    },
     methods: {
         changeTab(index) {
             console.log(index);
             this.currentTabIndex = index;
         },
-        async click() {
-            const response = await test()
-            this.testData = response.data
-        },
-        reset() {
-            this.testData = ''
-        }
     },
 }
 </script>
