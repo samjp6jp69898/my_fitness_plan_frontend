@@ -59,7 +59,7 @@ export default {
         },
         async getUserInfoByName({ commit, state }, name) {
             const res = await getUserInfoByName(name)
-            if (!res.data) throw ('User not found')
+            if (!res.data) throw ('使用者不存在')
             console.log('get user info by name', res)
             const userInfo = state.userInfo
             commit('setUserInfo', { ...userInfo, ...res.data })
