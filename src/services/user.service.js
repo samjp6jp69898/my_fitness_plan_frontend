@@ -14,7 +14,15 @@ export const test = async () => {
 }
 
 export const addUser = async (data) => {
-    return await _post(`/users`, data)
+    try {
+        const res = await _post(`/users`, data)
+        return res
+    } catch (e) {
+        if (e.response.status === 500) {
+            throw '使用者姓名已存在'
+        }
+        throw e
+    }
 }
 
 export const getUserInfoByName = async (name) => {
